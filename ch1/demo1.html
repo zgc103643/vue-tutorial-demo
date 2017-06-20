@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基本的数据绑定 - JS 实现</title>
+	
+</head>
+<body>
+	
+	<input type="text" id="input">
+	<p id="message"></p>
+
+	<script>
+
+	    // 更新 p 的值
+		let updateMessage = function(message) {
+			document.querySelector('#message').innerText = message;
+		}
+
+		// 选择 input 元素
+		let inputEl = document.querySelector('#input');	
+
+		// 定义 message 属性
+		let data = {};
+		Object.defineProperty(data, 'message',{
+			set(newValue){
+				inputEl.value = newValue;
+				updateMessage(newValue);
+			}
+		})
+		
+		// 监听键盘事件
+		inputEl.addEventListener("keyup", function(event){
+			data.message = event.target.value;
+		});
+
+	</script>
+</body>
+</html>
