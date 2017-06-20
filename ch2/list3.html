@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态添加姓名</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="root">
+		<li v-for = "name in names"> {{ name }}</li>
+		<input type="text" v-model="newName">
+		<button @click="addName()">添加姓名</button>
+		<button @click="setName()">设置姓名</button>
+		<button @click="vueSetName()">使用 Vue.set</button>
+	</div>
+
+	<script>
+
+		let data = {
+			names: ["jack","rose","kaka","curry"],
+			newName: ""  // 绑定 input 元素，最初为空
+		};
+
+		new Vue({
+			el: '#root',
+			data:data,
+			methods: {
+				addName() {
+					this.names.push(this.newName);
+					this.newName = "";
+				},
+				setName() {
+					this.names[this.names.length] = this.newName;
+				},
+				vueSetName() {
+					Vue.set(this.names, this.names.length, this.newName);
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

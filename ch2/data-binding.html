@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据绑定</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app">
+		v-html 的输出结果：<span v-html="name"></span> <br>
+		v-text 的输出结果: <span v-text="name"></span>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data:{
+				name: '<mark>Zen</mark>'
+			}
+		})
+	</script>
+</body>
+</html>

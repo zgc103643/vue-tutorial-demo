@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态添加姓名</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	
+	<div id="app">
+		<ul>
+			<li v-for = "name in names"> {{ name }}</li>
+		</ul>
+		<input type="text" id="addName">
+		<button id="submit">添加姓名</button>
+	</div>
+	
+	<script>
+		 var vm = new Vue({
+			el: '#app',
+			data: {
+				names: ["jack","rose","kaka","curry"]
+			},
+			// 实例加载后，执行 mounted
+			mounted() { 
+				document.querySelector('#submit').addEventListener('click',function(){
+
+					let nameElement = document.querySelector('#addName'); //监听
+					vm.names.push(nameElement.value); // 添加姓名
+					nameElement.value = ''; // 清空输入框
+				})
+			}
+		})
+	</script>
+</body>
+</html>
