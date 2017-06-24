@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	<link href="https://cdn.bootcss.com/bulma/0.4.1/css/bulma.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="root">
+		<tab-list>
+			<tab name="图片" :selected="true"></tab>
+			<tab name="音乐"></tab>
+			<tab name="文档"></tab>
+			<tab name="视频"></tab>
+		</tab-list>
+	</div>
+
+	<script>
+
+	Vue.component('tab',{
+		props: {
+			// 声明要获取的数据
+			name:{ require:true },
+			selected: { default:false }
+		},
+		template:`
+			<div></div>
+		`	
+	});
+	
+	Vue.component('tab-list',{
+		template: `
+			<div>
+				<div class="tabs">
+					<ul>
+						<li v-for="tab in tabs" :class="{ 'is-active':tab.selected === true }" @click="selectTab(tab)">
+							<a href="#">{{tab.name}}</a>
+						</li>
+					</ul>
+				</div>
+				<div><slot></slot></div>
+			</div>
+		`,
+		mounted(){
+			this.tabs = this.$children;  // 挂载之后，获取 tab 组件的数据
+		},
+		data() {
+			return {
+				tabs: []
+			}
+		},
+		methods: {
+			selectTab(selectedTab) {
+				this.tabs.forEach( (tab) => tab.selected = (selectedTab.name == tab.name) );
+			}
+		}
+	});
+
+	new Vue({
+		el: '#root'
+	})
+	</script>
+</body>
+</html>

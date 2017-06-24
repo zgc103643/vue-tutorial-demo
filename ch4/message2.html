@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	<link href="https://cdn.bootcss.com/bulma/0.4.1/css/bulma.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="root">
+		<!-- 父组件通过属性的方式传递消息给子组件 -->
+		<message title="欢迎" body="你好，Vue"></message>
+	</div>
+
+	<script>
+	
+	Vue.component('message',{
+		props: ['title','body'], // 子组件使用  props 显示声明它要获得的消息
+		template: `
+			<article class="message" v-show="isVisible">
+			  <div class="message-header">
+			    {{ title }}
+			    <button class="delete" @click="hideMessage"></button>
+			  </div>
+			  <div class="message-body">
+			    {{ body }}
+			  </div>
+			</article>
+		`,
+		data() {
+			return {
+				isVisible:true
+			}
+		},
+		methods:{
+			hideMessage() {
+				this.isVisible = false
+			}
+		}
+	});
+
+	new Vue({
+		el: '#root'
+	})
+	</script>
+</body>
+</html>

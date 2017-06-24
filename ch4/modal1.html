@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	<link href="https://cdn.bootcss.com/bulma/0.4.1/css/bulma.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="root">
+		<!-- 用户点击按钮，激活模态框 -->
+		<button @click="showModal = true">激活模态框</button>
+		<!-- 通过 v-if 来控制模态框的显示 -->
+		<!-- 通过 v-on 来接受子组件发出的信号 -->
+		<zen-modal v-if="showModal" @fireclose="showModal = false">这是一个模态框</zen-modal>
+	</div>
+
+	<script>
+	
+	Vue.component('zen-modal',{
+		// 子组件通过 $emit 来发出信号
+		template: `
+			<div class="modal is-active">
+			  <div class="modal-background"></div>
+			  <div class="modal-content">
+			  	<div class="box">
+			  		<slot>默认消息</slot>
+			  	</div>
+			  </div>
+			  <button class="modal-close" @click="$emit('fireclose')"></button>
+			</div>
+		`,
+		data() {
+			return {
+				isVisible:true
+			}
+		},
+		methods:{
+			hideMessage() {
+				this.isVisible = false
+			}
+		}
+	});
+
+	new Vue({
+		el: '#root',
+		data: {
+			showModal: false  // 模态框默认关闭
+		}
+	})
+	</script>
+</body>
+</html>

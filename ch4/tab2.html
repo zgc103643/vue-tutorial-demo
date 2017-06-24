@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	<link href="https://cdn.bootcss.com/bulma/0.4.1/css/bulma.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="root">
+		<tab-list>
+			<tab name="图片" :selected="true">视图 1</tab>
+			<tab name="音乐">视图 2</tab>
+			<tab name="文档">视图 3</tab>
+			<tab name="视频">视图 4</tab>
+		</tab-list>
+	</div>
+
+	<script>
+
+	Vue.component('tab',{
+		props: {
+			// 声明要获取的数据
+			name:{ require:true },
+			selected: { default:false }
+		},
+		template:`
+			<div v-show="isActive">
+				<slot></slot>
+			</div>
+		`,
+		// 在组件的内部，定义 `isActive` 来替代外部传进来的 selected
+		mounted(){
+			this.isActive = this.selected;
+		},
+		data(){
+			return {
+				isActive:false
+			}
+		},
+		computed: {
+			// 让超链接返回 `#` + `标签名` 的方式，如果标签名中存在空格，就用 `-` 来代替
+			href(){
+				return '#' + this.name.toLowerCase().replace(/ /g,'-');
+			}
+		}
+	});
+	
+	Vue.component('tab-list',{
+		template: `
+			<div>
+				<div class="tabs">
+					<ul>
+						<li v-for="tab in tabs" :class="{ 'is-active':tab.isActive === true }" @click="selectTab(tab)">
+							<a :href="tab.href">{{ tab.name }}</a>
+						</li>
+					</ul>
+				</div>
+				<div><slot></slot></div>
+			</div>
+		`,
+		mounted(){
+			this.tabs = this.$children;  // 挂载之后，获取 tab 组件的数据
+		},
+		data() {
+			return {
+				tabs: []
+			}
+		},
+		methods: {
+			selectTab(selectedTab) {
+				this.tabs.forEach( (tab) => tab.isActive = (selectedTab.name == tab.name) );
+			}
+		}
+	});
+
+	new Vue({
+		el: '#root'
+	})
+	</script>
+</body>
+</html>

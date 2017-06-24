@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+
+</head>
+<body>
+	<div id="root">
+		<div id="root" class="container">
+			<coupon @applied="couponApplied = true"></coupon>
+			<h1 v-if="couponApplied">该优惠码已应用！</h1>
+		</div>
+	</div>
+
+	<script>
+	
+	window.Event = new Vue(); // 创建一个全局变量 Event,绑定到 Vue 实例
+	Vue.component('coupon', {
+		template:`
+			<input type="text"  @blur="onCouponApplied" />
+		`,
+		methods: {
+			// 离开键盘时调用该方法
+			onCouponApplied() {
+				Event.$emit('applied'); // 实例触发 `applied` 事件
+			}
+		}
+	});
+
+	new Vue({
+
+		el:"#root",
+		data: {
+			couponApplied:false
+		},
+		created(){
+			// 实例创建完之后，监听 `applied` 事件
+			Event.$on('applied',() => this.couponApplied = true);  
+		}
+
+	});
+	
+	</script>
+</body>
+</html>

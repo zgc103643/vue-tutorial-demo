@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	<link href="https://cdn.bootcss.com/bulma/0.4.1/css/bulma.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="root">
+		<message>
+			<template slot="title">欢迎</template>
+			你好,Vue
+		</message>
+	</div>
+
+	<script>
+	
+	Vue.component('message',{
+		template: `
+			<article class="message" v-show="isVisible">
+			  <div class="message-header">
+			    <slot name="title">默认标题</slot>
+			    <button class="delete" @click="hideMessage"></button>
+			  </div>
+			  <div class="message-body">
+			    <slot></slot>
+			  </div>
+			</article>
+		`,
+		data() {
+			return {
+				isVisible:true  // 默认显示消息框
+			}
+		},
+		methods:{
+			// 隐藏消息框
+			hideMessage() {
+				this.isVisible = false  
+			}
+		}
+	});
+
+
+
+	new Vue({
+		el: '#root'
+	})
+	</script>
+</body>
+</html>

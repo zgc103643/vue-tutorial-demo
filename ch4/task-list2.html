@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+
+</head>
+<body>
+	<div id="root">
+		<task-list></task-list>
+	</div>
+
+	<script>
+	
+	Vue.component('task-list',{
+		template:`
+			<div>
+				<task v-for="task in tasks">{{ task.description }}</task>
+			</div>
+		`,
+		data() {
+			return {
+				tasks : [
+					{description:"编程",uncompleted:true},
+					{description:"锻炼",uncompleted:false},
+					{description:"阅读",uncompleted:true},
+					{description:"睡觉",uncompleted:false}
+				]
+			}
+		}
+	})
+
+	Vue.component('task',{
+		template:'<li><slot></slot></li>'
+	})
+
+
+	new Vue({
+		el: '#root'
+	})
+	</script>
+</body>
+</html>
