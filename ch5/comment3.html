@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基本的数据绑定 - Vue 实现</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app" class="container">
+		<comment v-model="comment"></comment>
+	</div>
+
+	<script>
+		Vue.component('comment',{
+			props: ['value'],  // 接受 value
+			// 在有新的 value 时触发 input 事件
+			template:`
+				<textarea class="textarea" :value="value" @input="filterComment($event.target.value)"></textarea>
+			`,
+			data(){
+				return {
+					sensitiveList:['包子','蛤蛤'],
+					replaceWord:'河蟹'
+				}
+			},
+			methods: {
+				// 实时过滤评论内容
+				filterComment(comment){
+					this.sensitiveList.forEach( (word) => {
+						let regex = new RegExp(word,'g');
+						comment = (comment.indexOf(word) >= 0 ? comment.replace(regex,that.replaceWord) : comment);
+					})
+					this.$emit('input',comment)
+				}
+			}
+		});
+
+		new Vue({
+			el:"#app",
+			data:{
+				comment:'这是一条评论'
+			}
+		});
+	</script>
+</body>
+</html>

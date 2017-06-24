@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基本的数据绑定 - Vue 实现</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app">
+		<p contenteditable="true" v-text="comment" @input="comment = $event.target.innerText"></p>
+		<p>{{ comment }}</p>
+	</div>
+	
+	<script>
+		 new Vue({
+	        el:"#app",
+	        data:{
+	            comment: "这是一条评论"
+	        }
+	    });
+	</script>
+</body>
+</html>
