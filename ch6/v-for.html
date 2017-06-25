@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for 遍历组件</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app">
+		<!-- 循环显示组件，并将 item 的值传给组件 -->
+		<zen-for v-for="(item, index) in listData" :item="item"></zen-for>
+	</div>
+
+	<script type="text/javascript">
+		Vue.component('zen-for',{
+			props: ['item'], // 声明要获取的值
+			// 每个组件输出不同的 item 值
+			template:'<div><p>{{ title }}: {{ item }}</p></div>',
+			data(){
+				return {
+					title: '该组件对应的值为'
+				}
+			}
+		});
+		
+		new Vue({
+			el: '#app',
+			data:{
+				listData: ["one", "two", "three", "four"]
+			}
+		})
+	</script>
+	
+</body>
+</html>

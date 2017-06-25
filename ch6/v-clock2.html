@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>不使用 v-clock</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	<style type="text/css">
+		[v-cloak] > * { display:none }
+		[v-cloak]::before { content: "加载中…" }
+	</style>
+</head>
+<body>
+	<div id="app" v-cloak>	
+		<div>你好, {{ name }}</div>
+	</div>
+	<button onclick="loadApp()">加载 Vue App</button>
+
+	<script type="text/javascript">
+		function loadApp () {
+			new Vue({
+				el: '#app', 
+				data: {
+					name: 'Vue'
+				}
+			})
+		}
+	</script>
+	
+</body>
+</html>

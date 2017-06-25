@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过滤器的使用</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="phoneNum in phoneLists"> {{ phoneNum | phoneFilter}}</li>
+		</ul>
+	
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				phoneLists: ['18058231948', '17823111113', '15923423412']
+			},
+			filters: {
+				phoneFilter(phoneNum){
+					return '*******'.concat(phoneNum.slice(-4));
+				}
+			}
+		})
+	</script>
+	
+</body>
+</html>

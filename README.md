@@ -4,4 +4,11 @@
 2. [列表](http://www.jianshu.com/p/0acc3de0e1a4)
 3. [属性绑定](http://www.jianshu.com/p/860552482829)
 4. [组件](http://www.jianshu.com/p/9fb0d02d8708)
+5. [自定义表单控件](http://www.jianshu.com/p/f474a1782ebb)
+6. [Vue 基础篇语法补充]
+7. Ajax
+8. Vue 中常用的  Es6 
+9. webpack 入门
+10. Vue Cli
+
 

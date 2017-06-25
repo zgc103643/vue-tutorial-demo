@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-once</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+</head>
+<body>
+	<div id="app" v-cloak>	
+		<input v-model="name">
+		<div v-once>你好, {{ name }}</div>
+	</div>
+	<script>
+		new Vue({
+			el: '#app', 
+			data: {
+				name: 'Vue'
+			}
+		})
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>watch 属性</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app">
+		<input v-model="q">
+		<div v-if="searching">搜索中...</div>
+		<div v-if="! searching && q">
+	    搜索建议
+	    <ul>
+	        <li v-for="suggestion in suggestions">
+	        	<a @click="q = suggestion.name">{{ suggestion.name }}</a>
+	        </li>
+	    </ul>
+	    </div>
+		</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				q: '',
+				suggestions: [],
+				searching: false
+			},
+			watch: {
+				// 监控搜索框变化
+				q() {
+					this.searching = true;
+					this.getSuggestions();
+				}
+			},
+			methods: {
+				// 模拟异步请求
+				getSuggestions() {
+					setTimeout(() => {
+						this.suggestions = [
+							{name: 'Jack'},
+							{name: 'Jone'},
+							{name: 'Jane'}
+						];
+						this.searching = false;
+					}, 1000);
+				}
+			}
+		})
+	</script>
+	
+</body>
+</html>

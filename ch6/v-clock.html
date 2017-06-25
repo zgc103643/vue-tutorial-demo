@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>不使用 v-clock</title>
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app">	
+		<div>你好, {{ name }}</div>
+	</div>
+	<button onclick="loadApp()">加载 Vue App</button>
+
+	<script type="text/javascript">
+		function loadApp () {
+			new Vue({
+				el: '#app', 
+				data: {
+					name: 'Vue'
+				}
+			})
+		}
+	</script>
+	
+</body>
+</html>
