@@ -8,7 +8,7 @@
 6. [Vue 基础篇语法补充]
 7. Ajax
 8. Vue 中常用的  Es6 
-9. webpack 入门
+9. webpack 
 10. Vue Cli
 
 
