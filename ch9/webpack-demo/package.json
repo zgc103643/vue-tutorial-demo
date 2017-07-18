@@ -1,0 +1,27 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "key": "echo 'hello world'",
+    "dev": "webpack",
+    "production": "NODE_ENV=production webpack",
+    "watch": "npm run dev -- --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "buble": "^0.15.2",
+    "buble-loader": "^0.4.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "jquery": "^3.2.1",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.0.0",
+    "webpack-manifest-plugin": "^1.1.2"
+  }
+}
